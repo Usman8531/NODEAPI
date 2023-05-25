@@ -45,3 +45,26 @@ export const userByID = async (req, res) => {
     users,
   });
 };
+
+export const updateUsers = async (req, res) => {
+  // const { id } = req.body;
+  const { id } = req.params;
+  // console.log(req.params);
+  const users = await userModel.findById(id);
+  res.json({
+    success: true,
+    message: "Updated",
+  });
+};
+
+export const deleteUsers = async (req, res) => {
+  // const { id } = req.body;
+  const { id } = req.params;
+
+  await userModel.deleteOne({ _id: id });
+  console.log("Deleted");
+  res.json({
+    success: true,
+    message: "deleted",
+  });
+};
